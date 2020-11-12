@@ -1,0 +1,21 @@
+C99 is a revised standard for the C lanuage and refines and expands the capabilities of C99
+C99 is not widely adopted
+    - not all popular C compilers support it
+    - of the ones that do, most only support a subset of the language
+C99 allows the use of sophisticated numbers (complex.h)
+
+-adds inline functions
+-adds variable declared inside of loops (for int i = 0; i < 10; i++)
+
+
+C11
+- added multithreading support
+-safer standard libraries
+-better compliance w/ other industry standards
+
+-attempts to fix some issues presented in C99
+-better compatiability with C++
+-fixed issues with C99
+-focuses on security w/safer standard functions like bounds checking strcat_s, strcpy_s
+-removes the gets function
+-threads <threads.h> and <pthread.h>
