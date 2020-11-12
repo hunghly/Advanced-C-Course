@@ -1,0 +1,11 @@
+The makefile defines the set of source files (SRC) and 
+defines the corresponding set of object files(OBJ) and
+defines the name of the executable (PROG)
+
+also defines some dependencies ($(PROG):(OBJ))
+    -which says that the executable is dependent on the object files
+    -if one or more of the object files change, the executable needs to be rebuilt
+    -gcc $(OBJ) -o $(PROG)
+the last line ($(OBJ):$(SRC))
+    -says that the obj file depends on it's corresponding source file
+    if a source file changes, it's correspodning object file must be rebuilt
