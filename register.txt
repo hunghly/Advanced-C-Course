@@ -1,0 +1,23 @@
+a process register (CPU register) is one of a small set of data holding places that are part of the computer processor
+-a register may hold an instruction, a storage address, or any kind of data
+
+-the register storage class is used to define local variables that should be stored in a register instead of RAM memory
+-makes the use of register variables to be much faster than that of the variables stored in memory during runtime of the program
+
+the register storage class should only be used for a variable that require quick access
+-the variables which are most frequently used in the C program
+-if a function uses a particular variable heavily
+
+the keyword register hints to the compiler that a given variable can be put in a register
+-IT IS THE COMPILER'S CHOICE to put in a register or not
+-MIGHT be stored in a register depending on hardware and implementation restrictions
+-generally. compilers themselves do optimizations and put the variables in the register
+
+both local variables and formal parameters can be declared as register variables
+-the storage class declares register variables which also has the same functionality as the auto variable
+    -the lifetime of the register variable remains only when control is within the block
+
+the variable is stored in a register has a max size equal to the register size
+
+you CANNOT obtain the address of a register variable using pointers
+    -cannot have the unary '&' operator applied to it (as it does not have a memory location)
