@@ -1,0 +1,41 @@
+three forms of memory in program
+1. static
+2. stack
+3. heap
+
+you have to decide to use memory from stack vs heap or static memory
+
+stack
+-stores temp variables created inside of function
+-easier to keep track of because the memory is only locally available in function
+-LIFO(last in first out) data structure managed by CPU
+-linear data structure and no need to manage the memory ourselves
+-grows and shrinks as variables are created and destroyed
+-limit to the size of variables that can be stored on the stack
+-if a program tries to put too much info on the stack, stackoverflow occurs
+    -happens when all memory in the stack has been allocated and further allocations begin overflowing into other sections of memory
+    -also occurs when recursion is used incorrectly
+-stack memory is divided into successive frames where each time a function is called, it allocates itself a fresh stack frames
+
+
+
+
+heap
+-hierarchical data structure
+-large pool of memory that can be used dynamically
+-memory is not managed automatically
+-the memory is accessed through the use of the pointers
+-you have to malloc and free the memory
+-no restriction on the size of the heap (or the variables it creates) other than physical size of the memory on the machine
+-variables created on the heap are accessible anywhere on the program (global scope)
+-heap memory is slower to read and write from/to
+
+when to use?
+-use heap when you
+    -need large block of memory i.e large array or struct
+    -when you need it for a long time (global variable)
+    -when you need variables like arrays and structs that can change size dynamically
+-use stack when you
+    -are dealing with relatively small variables that only need to persist as long as the function using them is alive since it's easier and faster
+
+    
