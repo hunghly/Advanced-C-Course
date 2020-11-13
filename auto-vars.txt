@@ -1,0 +1,37 @@
+storage classes
+used to describe the features of a function/variable
+includes the scope, visibility, and life-time
+-helps trace the existence of a particular variable during runtime of a program
+-the lifetime of the variable ist he time during which variable exist in computer mem
+-the scope of the variable is where the variable can be references in a program (i.e only inside of a function)
+-variable visibility or linkage, determines for a multiple source file program where the identifier is known only
+ in the current source file or any source file with proper declarations
+
+ C provides four storage classes
+ -auto
+ -register
+ -extern
+ -static
+
+the four storage class specifiers can be split into two storage durations
+-automatic storage duration
+-static storage duration
+
+keyword auto is used to declare variables of automatic storage duration
+-created when the block in which they are defined is entered
+-exist while the block is active
+-destroyed when the block is exited
+-it is a means of conserving memory
+-principle of least privilege - allows access to data only when it is needed.
+
+LOCAL variables
+-declared within function body
+-have automatic storage duration by default
+-automatically created each time function is called
+-the compiler assumes the default local variable is an automatic local variable and the keyword auto is seldom used
+-C++ has repurposed the auto keyword so it's better to not use auto if you're doing C/C++ compatibility
+-you might use auto to explicitly override an external variable definition
+
+syntax
+-[storage_class] [var_type] [var_name] i.e. auto double x,y;
+
