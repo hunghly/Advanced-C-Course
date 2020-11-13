@@ -1,0 +1,31 @@
+the static storage class can be used on local and global variables, as well as functions
+when applied to local variables it instructs the compiler to keep the variable in existence during the life-time of the program
+when applied to global variable, it restricts the variable to the file in which it is declared
+
+static variables have a property of preserving their value even after they are out of their scope
+-static variables preserve the value of their last use in their scope
+-no new memory is allocated because they are not re-declared
+-their scope is local to the function to which they are defined
+-making local variables static allows them to maintain their values between function calls
+    -DOES NOT CREATE/DESTROY THE LOCAL VARIABLES EACH TIME IT COMES IN AND OUT OF scope
+
+a static local var is only initialized once at the start of overall program execution
+a static var also has a default initial value of zero, unlike automatic var which does not have a default initial value
+-STATIC variables are allocated memory on the heap not on the stack
+
+
+there are situations where you want to define a global variable but not external (only global to the file)
+- do this by using static
+
+STATIC SHOULD NOT BE DECLARED INSIDE OF A STRUCTURE
+the C compiler requires the entire structure elements to be placed together
+-memory allocation for structure members should be contiguous (one after another with no breaks)
+-it is possible to declare a structure
+    -inside a function
+    -allocate memory dynamically
+    -it can be global
+
+ALL structure members should reside in the same memory segment
+    -the value for the structure element is fetched by counting the offset of the element from the beginning address of their structure
+
+ITS OKAY to have a static structure, but not individual static member fields
