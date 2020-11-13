@@ -1,0 +1,12 @@
+extern storage class tells us that a variable is defined elsewhere
+-it is a global variable initialized with legal value where it is declared in order to be used elsewhere
+
+-main purpose of using extern variable is that they can be accessed between two different files which are part of a larger program
+-functions contained in separate files can communicate through external variables
+
+inside the module that wants to access the external variable you would use the 'extern' keyword before the declaration
+
+when a function is defined, it can be declared to be extern explicity
+extern function can be called from a file where it is not defined i.e. no header
+-extern double foo(double x) { ... }
+    -the definition of the foo function effectively becomes global to any file in the program that can be called from outside the file

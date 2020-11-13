@@ -6,5 +6,8 @@ CC=gcc
 main:
 	$(CC) $(SRC) -I $(HEADERS_PATH) -o $(PROG)
 
+extern-c:
+	$(CC) extern-var.c foo.c -o extern.var
+
 clean:
 	$(RM) main
