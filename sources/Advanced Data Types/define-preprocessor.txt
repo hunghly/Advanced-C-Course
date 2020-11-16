@@ -1,0 +1,30 @@
+the #define preprocessor directive begins with the # and can be preceded by spaces or tabs
+-you can use the directive to define symbolic, or manifest, constants in the program
+-it runs until the first new line following the #
+    -a directive is limited to one line in length
+    -the combination backslash/newline is deleted before preprocessing begins
+    -you can spread the directive over several physical lines
+        -these lines still constitute a single logical line
+
+-typically appears right at the top of the program or inside of an include file
+-by convention, #define names are used only with uppercase and underscores
+
+-defining a constant
+#define YES 1
+-defines the name YES and make it equivalent to 1
+-no equal sign or semicolon
+-i.e. gameOver = YES means gameOver is 1
+-a defined name is NOT a variable
+
+a definition can include an expression
+i.e. #define TWO_PI 2.0 * 3.141592654
+
+============================================
+NULL
+inside of <stddef.h> there is a #define NULL 0
+-this points to a null pointer
+
+define helps make the program more portable from one computer system to another
+
+#define PI 3.14f vs const float Pi = 3.14f
+
