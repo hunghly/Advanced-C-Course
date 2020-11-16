@@ -1,0 +1,3 @@
+a variable length array is defined in terms of an expression evaluated at execution time
+-it is NOT a variable-length array in that you can use the size of the array. you declare a variable to a fixed size.
+
