@@ -1,0 +1,40 @@
+the typedef keyword allows you to create your own name for an existing data typedef
+-to define a new type name you use typedef keyword
+    -write the statement as if a variable of the desired type were being declared
+    -where the name of the declared variable would normally appear, subsitute the new type name
+    -in front of everything, place the keyword typedef
+
+i.e. 
+//
+typedef int Counter;
+
+
+-now Counter is equivalent to the C data type int
+variables can subsequently be declared to be of type Counter
+Counter j, n; // are now int like
+
+one advantage is that it adds readability that lends to the definition of variables
+it also adds maintainability
+-using typedef is analogous to using variables instead of explicit numbers
+-when the type for a certain purpose needs to change, then only the TYPEDEF needs to change rather than all the lines of code
+
+-make the program more portable by creating synonyms for basic data types
+-use typedef to create an alias for 4-byte integers such as Integer is one example (the alias Integer can then be changed once in the program to make the program work on any system)
+
+
+#define Counter int; // has the same effect as the previous typedef
+-BUT #define is handled by the preprocessor and typedef is handled by the C compiler
+-typedef provides more flexibility when it comes to assigning names to a derived ata type
+-the typedef does not actually define a new data type, just changes the type name 
+
+Best Practices
+-do not use typedef on structs
+-use typedefs for types that combine arrays, structs, pointers, or functions
+-use typedefs for portable types
+    -when you need a type that's at least 20-bits, make a typedef
+    -making the changes in just the typedef, rather than in every declaration
+-using typedefs for casting
+    -a typedef can provide a simple name for a complicated type casting
+
+typedef int (*ptr_to_int_fun)(void);
+char *p = (ptr_to_int_fun) p;
