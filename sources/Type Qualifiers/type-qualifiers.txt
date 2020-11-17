@@ -1,0 +1,7 @@
+C90 added two more new type qualifiers
+-const and volatile
+C99 added a third qualifiers
+-restrict
+type qualifiers are Idempotent (added in C99) meaning that you can use the same qualifier more than once in a declaration,
+and the superfluous ones are ignored
+
