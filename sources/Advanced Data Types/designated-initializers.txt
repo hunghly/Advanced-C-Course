@@ -1,0 +1,13 @@
+designated initializers allow you to specify which elements of an array, structure, or union are to be initialized by
+the values following an array index or a field by name (struct and union)
+
+the C90 standard required the elements on an initializer to appear in a fixed order
+
+the C99 standard allows for initializing to a random order
+
+i.e. 
+int numbers[100] = {1, 2, 3, [3 ... 9] = 10, [10] = 80, 15, [70] = 50}
+
+struct point { int x, int y, int z };
+
+struct point p = { y: 2, x: 3}
