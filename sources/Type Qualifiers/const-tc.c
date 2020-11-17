@@ -20,6 +20,8 @@ int main(void) {
 
     float const *pfc; // the same as const float *pfc;
 
+    int const k = 5; // can declare const after the type
+
     return 0;
 
 }
