@@ -1,0 +1,51 @@
+a bit mask is data that is used for bitwise operations
+-a bit pattern with some bits set to on (1) and some bits to off (0)
+-a mask can be used to set multiple bits in a byte to either on, off or inverted from on to off 
+using a single bitwise operator
+-imagine you want to create a program that holds state, which is based on multiple values that are one (true)
+, or zero (false)
+    -you can store these values in different variables( booleans or ints)
+    -OR you can store them using a single integer variable and use each bit of it's internal 32 bits
+    to represent the different true and false values
+    -YOU HAVE 32 BITS TO WORK WITH! COMPARE TO 32 VARIABLES!
+    -it is very efficient
+
+00111111 - can represent state for 8 variables
+-to avoid information peeking around the edges, a bitmask should be at least as wide as the value it's masking
+
+
+
+Using a bit mask with AND
+-it is often used with &
+-it would set all values to 0 unless both values are 1
+flags = flags & MASK;
+
+MASK: 0000 0011
+FLAG: 1001 0110
+===============
+RES:  0000 0010
+
+the expression flags & MASK is like covering the flag bit pattern with the mask
+-only the bits under the mask are visible
+
+TURNING BITS ON
+you often need to turn on particular bits in a value while leaving the reamining bits unchanged
+-an IBM PC controls hardware through values sent to ports
+-to turn on the internal speaker, you might have to turn on the 1 bit while leaving the others unchanged
+
+consider the MASK which has bit 1 set to 1
+flags = flags | MASK;
+
+MASK: 0000 0001
+FLAG: 1001 0000
+===============
+RES:  1001 0001
+
+TURNING BITS OFF WITH AND
+use flags = flags & ~mask // were mask has the bit assigned where you want it to be turned off 
+
+
+TOGGLING BITS USING XOR
+-toggling means turning it off if on and turning it on if off.
+flags = flags ^ MASK
+
