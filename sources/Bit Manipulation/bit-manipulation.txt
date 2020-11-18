@@ -1,0 +1,43 @@
+bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word
+
+computer programming tasks that require bit manipulation include:
+-low level device control
+-error detection
+-correction algorithms
+-data compression
+-encryption algorithms
+-optimization
+
+-a bitwise operation operates on one or more binary numbers are the level of their individual bits
+    -used to manipulate values for comparisons and calculations
+    -substantially faster than division, several times faster than multiplication, and sometimes faster than addition
+
+Bitwise Logical Operators
+-C offers bitwise logical operators and shift operators
+Operators   Description
+&           Binary AND operator that copies a bit to the result if it exists in both operands
+|           Binary OR operator that copies a bit if it exists in either operands
+^           Binary XOR operator that copries the bit if it is set in one operand but NOT both
+~           Binary Ones complement operator for unary and has the effect of 'flipping' bits
+
+-they operate on each bit independently of the bit to the left or right
+-they are not the same as logical operators i.e. && and || and !
+-all of the logical operators listed in the table except for the ones complement are binary operators
+
+Use Case
+-bit operations can be performed on any type of integer value in C
+-int, short, long, long long, signed or unsigned and on chars, but not on floating pt values
+
+-a bit mask is data that used for bitwise operations
+    -using a mask, multiple bits in a Byte can be set to either on, off, or inverted from on to off to a single bitwise operation
+
+-one major use of the bitwise AND & and bitwise OR | is in operations to test and set individual bits in an integer variable
+
+-you can use a single integer variable to store several characteristics of a person
+    -store whether the person is male or female with one bit
+    -use three other bits to specify whether the person can speak french, german, or italian
+    -use another bit to record whether the person's salary is 50k or more
+
+
+-one of the features that set C apart from most high-level languages is it's ability to access individual bits in an integer (often used to interface with hardware devices and with operating systems)
+
