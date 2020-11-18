@@ -1,0 +1,28 @@
+a binary number has only 1 & 0
+
+Bits for the basic C data types
+BIT     _Bool       1       0 or 1
+Byte    char        8       -128 to 127
+Word    short int   16      -32,768 to 32,767
+Long    long int    32      -2,147,483,648 to -2,147,483,647
+
+computers representation of negative numbers is handled slightly differently
+computers represent such number using a "twos complement" notation
+the left most bit represents the sign bit
+-1 is negative, 0 is positive
+
+
+to convert -5 to binary, the number 1 is added which gives -4
+4 expressed in binary is 0000 00100, it's complement is 1111 1011 (-5)
+
+to convert a negative number from binary back to decimal
+-first complement all the Bits
+-convert the result to decimal
+-change the sign of the result
+-then subtract 1
+
+we need to understand these concepts in order to use bit operators and the concept of bit fields in C programming
+-a hardware device is often controlled by sending it a byte or two in which each bit has a particular meaning
+-operating system information about files is often stored by using particular bits to indicate particular items
+
+
