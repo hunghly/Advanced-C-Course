@@ -19,11 +19,14 @@ int main(int argc, char** argv) {
     size_t line_size = 32;
 
     if ((fp = fopen(filename, "r"))) {
-        while (getline(&line, &line_size, fp) != -1) {
+        while (getline(&line, &line_size, fp) != -1) { // read lines until no new lines found
             if (strchr(line, ch) != NULL) {
                 printf("%c found in %s\n", ch, line);
             }
         }
+    } else {
+        puts("Error opening file...");
     }
+    fclose(fp);
     return 0;
 }
