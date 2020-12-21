@@ -7,3 +7,12 @@ GCC
 YOYO
 ball
 phone
+hello
+it's
+a
+nice
+day
+outside
+it's
+night
+out

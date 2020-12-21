@@ -30,6 +30,9 @@ int main(void) {
     // fscanf is provided to perform the same operations as the scanf() function but on a file
     // int fscanf( FILE *restrict stream, const char *restrict format, ... );
 
+
+/*
+fscanf
     FILE *fp1 = NULL;
     char buff[254];
     char words[MAX];
@@ -61,6 +64,26 @@ int main(void) {
     puts("Done");
 
     fclose(fp1);
+    */
+
+    // sscanf reads from a string rather than reading from standard input or keyboard
+    // int sscanf( const char *restrict buffer, const char *restrict format, ... );
+
+    // the first argument is a pointer to the string from where we want to read the data
+    // the rest of the arguments of sscanf is same as that of scanf
+    // returns the number of items read from the string and -1 if an error is encountered
+
+    char *myStr1 = "Jason Instructor 43";
+
+    char name[30], title[30];
+    int age = 0, ret = 0;
+
+    ret = sscanf(myStr1,"%s %s %d", name, title, &age); // basically it parses the string and assigns it to individual variables
+    printf("Name is %s\n", name);
+    printf("title is %s\n", title);
+    printf("Age is %d\n", age);
+
+
 
     return 0;
 }
