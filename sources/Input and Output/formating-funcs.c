@@ -83,6 +83,15 @@ fscanf
     printf("title is %s\n", title);
     printf("Age is %d\n", age);
 
+    // fflush function is used to flush/clean a file or buffer
+    // causes any unwritten data in the output buffer to be sent to the output file 
+    // int fflush(FILE *fp);
+    // fflush (buffer);
+    // buffer is a temp variable or pointer which loads/points to the data
+    // if the file is a null pointer, all output buffer are flushed
+    // the effect of using fflush() on an input stream is undefined
+    // you cna use it with an update stream (any of the read-write modes), provided that the most recent operation useding the stream was not input
+    
 
 
     return 0;
