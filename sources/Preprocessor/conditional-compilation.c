@@ -27,19 +27,50 @@
 // #ifdef checks whether an identifier is currently defined 
 
 // #define UNIX 1
-#ifdef UNIX // if UNIX is defined, then compile all the code up to the else #else or #endif
-    #define LINUX 1
-#else
-    #define LINUX 0
-#endif
+// #ifdef UNIX // if UNIX is defined, then compile all the code up to the else #else or #endif
+//     #define LINUX 1
+// #else
+//     #define LINUX 0
+// #endif
 
 // #define JUST_CHECKING
 #define LIMIT 4
 
+// ifndef checks if the identifier is not currently defined
+#ifndef SIZE
+    #define SIZE 4 // defines size 4 if it's not defined
+#endif
+
+// if directive is used to test the value of a constant expression
+// #if tests if a compile time condition is true, it does not contain any increment, decrement, sizeof, pointer, address or cast operators BUT
+// you can use logical operators
+#if SIZE == 4
+    #undef SIZE
+    #define SIZE 9
+#endif
+
+// #else to completement the ifdef and ifndef and if directives, the #else directive works just like an else statement
+// it operates similar to C if else except the compiler does not recognize the braces
+// These else-ifs can be nested
+#ifdef UNIX
+    #define DATADIR "/uxn1/data"
+#else
+    #define DATADIR "\usr\data"
+#endif
+
+//#elif is for multiple choice selections
+#define US 0
+#define UK 1
+#define France 2
+#define Germany 3
+#define Country France
+
 #include "just-checking.h"
 
 int main(void) {
-    printf("Is Linux defined? %d\n", LINUX);
+    #ifdef LINUX
+        printf("Is Linux defined? %d\n", LINUX);
+    #endif
 
     int i;
     int total = 0;
@@ -49,4 +80,20 @@ int main(void) {
             printf("i=%d, running total = %d\n", i, total);
         #endif
     }
+
+    #if SIZE > 0 && SIZE < 10
+        puts("Size less than 10 and greater than 0");
+    #endif
+
+    printf("SIZE IS %d\n", SIZE);
+
+    #if Country == US || Country == UK
+        #define Greeting "Hello."
+    #elif Country == France
+        #define Greeting "Bonjour"
+    #elif Country == Germany
+        #define Greeting "Guten Tag."
+    #endif
+
+    puts(Greeting);
 }
