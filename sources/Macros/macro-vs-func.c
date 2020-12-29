@@ -29,6 +29,11 @@
 // #define CIRCLE_AREA(X) ((PI) * (X) * (X))
 #define CIRCLE_AREA(X) (PI * X * X)
 
+#define Warning(...) fprintf(stderr, __VA_ARGS__) // you can do a variadic argment using this format
+
+#define MISC(x) (puts("Incrementing"), (x)++, printf("%d\n", x))
+#define MAX(a,b) ((a) > (b)) ? (a) : (b)
+#define UpTo(i, n) for ((i) = 0; (i) < (n); (i++))
 
 int main(void) {
     // a function macro
@@ -42,4 +47,15 @@ int main(void) {
     // incorrectly forgetting to put parenthesis around the macro variables would cause
     // CIRCLE_AREA(5+2) to be 3.14 * 5 + 2 * 5 + 2 => 3.14 * 5 + 10 + 2 => 15 + 10 + 2 = 27
 
+    Warning("Warning message: %s. The second message %s\n", "Here's the message", "Another message");
+    int x = 0;
+    MISC(x);
+    MISC(x);
+    MISC(x);
+    int y = 0;
+    y = MAX(10, 11);
+    printf("%d\n", y);
+    int i;
+    UpTo(i, 10);
+    
 }
