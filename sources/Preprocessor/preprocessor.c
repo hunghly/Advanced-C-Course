@@ -23,3 +23,19 @@
  * defined()
  *  -simplifies the writing of compound expressions in certain macro directives
 */
+#include <stdio.h>
+
+
+#define str(x) #x   // this will cause whatever is passed into as x to be wrapped with double quotes and treated as a string
+#define Hello(x) printf("Hello," #x "\n")
+#define printint(var) printf(# var"=%i\n", var) // space is optional between # and var name
+
+// the ## operator is used in macro definitions to join two tokens together
+// -
+
+int main(void) {
+    puts(str(testing)); // check macro definition
+    Hello(Hung);
+    int count = 3;
+    printint(count); // passes the var name and the var value
+}
