@@ -31,11 +31,24 @@
 #define printint(var) printf(# var"=%i\n", var) // space is optional between # and var name
 
 // the ## operator is used in macro definitions to join two tokens together
-// -
+// - preceded or followed by the name of a parameter to the macro
+// - takes the actual argument to the macro that is supplied when the macro is invoked and creates a single token out of that argument and whatever token follows/preceds the ##
+// two tokens that don't together form a valid token cannot be pasted together i.e. cannot concat x with +
+#define TOKENCONCAT(x,y) x ## y // TOKENCONCAT(O,K) is replaced by OK in the program
+#define concatenate(x,y) x##y // combines x and y into one string xy when passed into argument
+#define make_function(name) int my_## name (int foo)
+
+#define eat(what) puts("I'm eating " #what " today.")
 
 int main(void) {
     puts(str(testing)); // check macro definition
     Hello(Hung);
     int count = 3;
     printint(count); // passes the var name and the var value
+    int xy = 10;
+    printf("%d\n", concatenate(x,y));
+    // printf("%s", concatenate(10,10));
+    char bar[] = {"bar"};
+    make_function(bar); // will define a function called my_bar()
+    eat(fruit);
 }

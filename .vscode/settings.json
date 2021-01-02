@@ -7,6 +7,14 @@
         "*.txt": "plaintext",
         "*.py": "python",
         "__config": "c",
-        "cstdio": "c"
+        "cstdio": "c",
+        "__debug": "c",
+        "exception": "c",
+        "functional": "c",
+        "memory": "c",
+        "new": "c",
+        "optional": "c",
+        "stdexcept": "c",
+        "typeinfo": "c"
     }
 }
