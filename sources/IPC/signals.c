@@ -37,8 +37,6 @@ int main(void) {
         sleep(1);
     }
 
-    return 0;
-
     // the alarm() function provides a mechanism for a process to interrupt itself in the future
     // it sets a timer, when the timer expires, the process receives a signal (SIGALARM)
     // if we ignore or do not catch the signal, the process is terminated (the default action)
