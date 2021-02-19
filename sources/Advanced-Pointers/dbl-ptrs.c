@@ -7,6 +7,8 @@ int main(void) {
     
     // pointer (holds address) => variable(holds value)
     // double pointer (holds address of pointer) => pointer(holds address) => variable(holds value)
+
+
     int *intptr;
     int x = 10;
     intptr = &x;
