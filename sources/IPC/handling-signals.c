@@ -12,7 +12,7 @@ int main(void) {
     int result = 0;
     int v1 = 0, v2=0;
     void (*sigHandlerReturn)(int);
-    sigHandlerReturn = signal(SIGABRT, handler_dividebyzero); // registers signal handler
+    sigHandlerReturn = signal(SIGFPE, handler_dividebyzero); // registers signal handler
     if (sigHandlerReturn == SIG_ERR) {
         perror("Signal Error: ");
         return -1;
