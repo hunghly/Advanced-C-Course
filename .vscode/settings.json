@@ -17,6 +17,8 @@
         "stdexcept": "c",
         "typeinfo": "c",
         "signal.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "string.h": "c"
     }
 }
