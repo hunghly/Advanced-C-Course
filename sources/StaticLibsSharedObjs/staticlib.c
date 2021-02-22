@@ -51,6 +51,9 @@
  * - code shared, data is specific to each process
  * 
  * static libraries are called something.a or something.lib
+ * - libc.a is the standard c library, libm.a is the math functions
+ * - stored inside of /usr/local/lib
+ * 
  * dynamic libraries are called something.so
  * 
  * you can identify your libraries by looking at the header files you have used
