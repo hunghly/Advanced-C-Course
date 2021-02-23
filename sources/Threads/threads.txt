@@ -1,0 +1,37 @@
+-processes - do one thing a time
+-in the real world you can't do everything at the same time, if someone comes in, you must stop what you're doing to respond
+-forking will create a duplicate process and is not efficient
+-processes also do not share data easily
+
+threads start a separate task quickly, can share all of the current data and will not require a lot of code
+threads are a way to divide a single process into sub-runnable parts i.e. lightweight processes
+a thread can also be schedule independently of the larger program that it is inside of (done by the OS)
+means that a single program may actually more than 100% of the CPU resources on a multiprocessor machine
+
+a thread has it's own unique id, program counter, register set, and stack space just like a process
+threads share memory across each thread by having the same address space
+-two threads have access to the same set of variable and can alter each other's variables
+-if one thread changes the variable, it gets changed for all the others
+-threads also share OS resources like open files and signals
+
+threads are a popular way to improve an app through parallelism and executing tasks concurrently
+multi-threading means that you give each thread a separate task and they all will perform at the sam time
+-browser - each new tab can be a thread
+
+threads require less overhead than forking and spawning a new process since the system does not initialize a new system virtual memory space and environment
+threads provide efficient communication and data exchage since they share address space
+also creation of thread is faster as well as context switching and termination of thread
+
+some disadvantages
+-easy to overlook consequences of interactions between concurrently executing threads
+-thread synchronization is a big issue i.e. two threads accessing same data at the same time
+
+C does not contain any built-in support except C11 but noone uses it
+In 1995, POSIX became the standard interface for many system calls in UNIX including threading
+POSIX threads (pthreads) are standard for almost all other languages like java, c++, python
+
+the purpose of using POSIX thread library is your software will execute faster
+
+pthread functions are defined in pthread.h header file
+
+will not cover concepts like thread scheduling, thread-specific data, thread canceling, handling signals, reader/writer locks
