@@ -8,6 +8,13 @@ void *hello_return(void* args) {
     char* hello = strdup("Hello World!\n"); // strdup -duplicates the string Hello World into hello
     return (void*) hello; // returns a void* to the address of hello
 }
+int summation(int num) {
+  int sum = 0;
+  for (int i = 1; i <= num; i++) {
+    sum+=i;
+  }
+  return sum;
+}
 
 int main(int argc, char*argv[]) {
     char* str;
@@ -18,5 +25,7 @@ int main(int argc, char*argv[]) {
     pthread_join(thread, (void**) &str);
     // pthread_exit(NULL); // if we try to exit here, the pthread_join will not be able to return the pointer to address of hello
     printf("%s\n", str);
+    printf("%d\n", summation(8));
     return 0;
 }
+
