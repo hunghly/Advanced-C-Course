@@ -1,0 +1,53 @@
+the issues we face with threads include:
+-race conditions
+-deadlock
+
+you want to write thread-safe code. thread synchronization is the concurrent execution of two or more threads that share critical resources. threads should be synchronized to avoid critical resource use conflicts. otherwise, conflicts may arise when parallel-running threads attempt to modify a common variable at the same time.
+
+race conditions
+-while the code may appear on the screen in the order yu wish the code to execute, threads are scheduled by the OS and are executed at random
+-it cannot be assumed that threads are executed in the order they were created
+    -they may also execute at different speeds
+-when threads are executing (racing to complete) they may give unexpected results (race condition)
+-a race condition often occurs when two or more threads need to perform operations ont he same memory area, but the results of the computation depends on the order in which these operations are performed
+-also occurs when commands to read/write a large amount of data are received at almost the same instant
+
+deadlocks
+-deadlock occurs when multiple threads are trying to access a shared resource
+-a deadlock is a situation in which two threads are sharing the same resource and effectively preventing each other from accessing this resource
+-causes program execution to halt indefinitely
+-each thread is waiting on the other thread
+-deadlock occurs when one thread locks a resource and never unlocks that resource
+    -caused by poor application of locks or joins
+    -you have to be careful when applying two or more locks to a section of code
+-because of the issues of race conditions and deadlocks, a threaded function must call functions which are 'thread safe' i.e. code only manipulates shared data structures in a manner that ensures that all threads behave properly without unintended interaction
+-'thread safe' also means that there are no static or global variables (shared reources) which other threads may corrupt or clobber
+    -usually any function that does not use static data or other shared resources is thread-safe
+-thread-unsafe functions may be used by only one thread at a time in a program and the uniqueness of the thread must be ensured
+
+mutual exclusion
+-a critical section of code that contains a shared resource and is accessible by multiple processes or threads
+    -it is vital for a thread programmer to minimize critical sections if possible
+mutual exclusion is a method of serializing access to shared resources and prevents simulataneous access to a critical section 
+
+Mutexes
+-a mutex is a lock that one can virtually attach to some resource
+-one of the primary mean sof implementing thread synchronization and for protecting shared data
+    -used to prevent data inconsistencies due to race conditions
+-anything a global resource is accessed by more than one thread, the resource should have a mutex associated with it
+    -can applied mutex to protect a segment of memory (the "critical region") from other threads
+-if a thread wishes to modify or read a value from a shared resource, the thread must first gain the lock
+    -once it has the lock it may do what it wants with the shared resource without concerns of other threads trying to access the thread (other resources will have to wait)
+    -once the thread finishes using the shared resource, it unlocks the mutex, which allows other threads to access the resource
+-as an anology, a mutex is like a safe with only one key and the resource is within the safe. only one person can have the key to the chest at any time, therefore, the only person allowed to modify the contents is the person with the key.
+
+atomic operations and condition variables
+-atomic operations allow for concurrent algorithms and access to certain shared data types without the use of Mutexes
+    -one can modify some variable within a multithreaded context without having to go through a locking protocol.
+-condition variables allow threads to synchronize to a value of a shared resource
+    -used as a notification system between threads
+-you could have a counter (flag) that once it reaches a certain count
+    -a thread will activate and then wait on a condition variable
+-active threads will signal on this condition variable to notify other threads waiting/sleeping on this condition variable -> causing the waiting thread to wake up
+-you can also use a broadcast mechanism if you want to signal all threads waiting ont he condition variable to wakeup
+-when waiting on condition variables, the wait should be inside a loop
