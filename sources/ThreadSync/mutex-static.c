@@ -30,5 +30,6 @@ void *thread_function(void *dummyPtr) {
     printf("You only see this if function is unlocked\n");
     counter++;
     pthread_mutex_unlock(&mutex1);
-    return NULL;
+    // return NULL;
+    pthread_exit(NULL);
 }
