@@ -1,4 +1,29 @@
 include files
 the following header files are needed to work with sockets
 1. <sys/types.h> - contains definitions of a number of data types used in socket calls
-2. <sys/socket.h>
+2. <sys/socket.h> - the main header file that includes a number of definition of structures needed for sockets (socket creation, accept, listen, bin send, recv, etc)
+3. <netinet/in.h> - contains constants and structures needed for internet domain addresses
+4. <netdb.h> - defines the structure hostent
+5. <arpa/inet.h> - defines in_addr structure
+
+ports
+-a computer might need to run server programs at once, might need to send out webpages, posting email, etc.
+- to prevent different conversations from getting confused, we use different ports for each server
+-a port will be between 1024 and 65535
+    - port numbers smaller than 1024 are considered well-known system ports which are reserved.
+-port assignments to network services can be found in file /etc/services
+
+the following function s are provided to fetch service name from the /etc/service file:
+#include <netdb.h>
+struct servent *getservbyname(const char *name, const char *proto);
+struct servent *getservbyport(int port, const char *proto);
+
+various strucutres are used in socket programming to hold information about the address and port
+socket address structures are n integral part of every network program, most socket functions require a pointer to a socket address structure as an argument
+-we allocate them, fill them in, and pass pointers to them to various socket functions
+-sometimes we pass a pointer to one of these structures to a socket function and it fills in the content
+-we always pass by reference i.e. a pointer to the structure and not the structure itself. we also pass te size of the structure as another argument
+-when a socket function fills in a structure, the length is also passed by reference, so that it's value can be updated by the function
+-always set the variables to NULL. if you make a pointer, always set to NULL
+
+
