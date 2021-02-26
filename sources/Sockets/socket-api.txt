@@ -1,0 +1,4 @@
+include files
+the following header files are needed to work with sockets
+1. <sys/types.h> - contains definitions of a number of data types used in socket calls
+2. <sys/socket.h>

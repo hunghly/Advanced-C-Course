@@ -1,0 +1,54 @@
+programs on different machines often need to talk to each other
+we already learned how to use I/O to communicate with files
+we have learned how processes on the same machine can communicate with each other
+
+most networked apps need two separate programs-server and client
+
+TCP protocol
+-TCP is a standard taht defines how to establish and maintain a network conversation through which application programs can exchange data
+-works with IP, which defines how computers send packets of data to each other
+-together TCP/IP is the basic rules defining the internet
+-all major internet apps such as www, email, remote administration, and file transfer rely on TCP
+-TCP is a connection-oriented protocol
+    -meaning a connection is established and maintained until the application programs at each end have finished exchanging messages
+-TCP creates a connection between the source and the destination node before transmitting the data and keeps the connection alive until the communication is no longer active
+
+features of TCP connection
+-connection oriented
+-reliability
+-handles lost packets
+-handles packet sequencing
+-handles duplicate packets
+-full duplex
+-flow control
+-congestion control (if too much data goes through, it manages that data)
+
+client/server model
+-the client requets services or resources from the server
+-the client establishes a connection to the server over a local area network or wide-area network(WAN) such as the internet
+-once the server has fulfilled the client's request, the conneciton is terminated
+-because multiple programs share the services of the same server program, a special server called daemon (demon) may be activated to just await client requests
+
+-types of servers
+1. iterative server - the simplest form of a server where the server process servers one client at a time. after completing the first request, it takes another request, each client waits until it's their turn
+2. concurrent server - this type of server runs multiple concurrent processes to server many requests at a time. one process may take longer and another client does not need to wait too long. the simplest way to write a concurrent server under Unix is to fork a child process to handle each client separately.
+
+sockets
+-are virtual endpoint of any kind of network communications done between two computers
+-socket programming is a way of connecting two nodes on a network to communicate with each other
+-one socket (node) listens on a particular port at an address. another socket reaches out to the other to form a connection
+-server forms the listener socket while the client reaches out to the server
+-when you type www.google.com in your web browser, it opens up a socket and connects to google.com to fetch the page. same with skype.
+-all network communication goes through a socket
+
+
+steps to communicate with socket
+-create a new socket for network communication
+-attach a local address to a socket (bind)
+-announces willingness to accept connections (listen)
+-block caller until a connection request arrives (accept)
+-actively attempt to establish a connection (connect)
+-send data over connection (send)
+-receive some data over connection (receive)
+-release the connection (close)
+
