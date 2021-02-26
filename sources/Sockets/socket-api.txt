@@ -141,3 +141,69 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 -addrlen - set to sizeof(struct sockaddr)
 -returns a non-negative descriptor on success, otherwise returns -1 (all read/write ops will be done on this descriptor to communicate with the client)
 
+how does recv functons work?
+int recv(int sockfd, void* buf, int len, unsigned int flags);
+-the recv function is used to receive data over stream sockets or connected datagram sockets
+    -if you want to receive data over unconnected datagram sockets, you must use recvfrom()
+-buf is the buffer to read information into
+-len is the max length of the buffer
+-flag is set to 0
+-returns # of bytes read into the buffer, otherwise return -1 on error
+
+-recvfrom - used to receive data from unconnected datagram sockets
+ssize_t recvfrom(int socket, void *buffer, size_t length, int flags, struct sockaddr *address, socklen_t *address_len);
+
+how does the write function work?
+int write(int fd, const void *buf, int nbyte);
+-attempts to write nbytes from the buffer pointed by buf to the file associated with the open fd.
+-fd is a socket descriptor
+-buf is ptr to data you want to send
+-nbyte is the number of bytes to be written, if nbyte is zero, write() will return 0 and have no other results if the file is a regular file, otherwise, the results are unspecified
+
+how does the send function work?
+int send (int sockfd, const void *msg, int len, int flags);
+-the send function is used to send data over stream sockets or connected datagram sockets
+    -if you want to send data over unconnected datagram sockets, you must use sendto() function
+-sockfd - the fd 
+-msg - a pointer to the data you want to send
+-len - length of the data in bytes
+-flags - set to sin_zero
+-returns the number of bytes sent out, otherwise -1 on error
+
+sendto function
+int sendto (int sockfd, const void *msg, int len, int flags, const struct sockaddr *to, int tolen);
+-same as send, but adds sockaddr *to which points to a struct sockaddr for the host where the data has to be sent to
+-tolen - the sizeof(struct sockaddr)
+
+read function
+int read(int fd, const void* buf, int nbyte);
+-the read function attempts to read the nbytes from the fd nbytes into buf
+-returns nbytes actually read, otherwise -1 on error
+
+close function
+int close (int fd)
+-used to close the fd
+
+shutdown function
+int shutdown(int sockfd, int how);
+-used to gracefully close the fd i.e. gives more control in comparision to the close function
+-sockfd - like above
+-how - 0 indicates that receiving is not allowed, 1 - indicates that sending is not allowed, 2 - indicates that both sending and receiving are not allowed (when how is set to 2, its the same a close())
+
+
+
+server
+======
+create socket
+bind the socket
+listen for connections
+accept connections
+send/receive data
+
+
+client
+======
+create socket
+connect
+send/receive
+
