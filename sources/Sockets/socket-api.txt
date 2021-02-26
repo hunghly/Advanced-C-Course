@@ -26,4 +26,118 @@ socket address structures are n integral part of every network program, most soc
 -when a socket function fills in a structure, the length is also passed by reference, so that it's value can be updated by the function
 -always set the variables to NULL. if you make a pointer, always set to NULL
 
+-sockaddr is a structure that holds the socket information
+-it is a generic socket address struct which will be passed in most of the socket function calls
+
+struct sockaddr {
+    unsigned short sa_family;
+    char sa_data[14];
+}
+
+sa_family ca be the following:
+AF_INET
+AF_UNIX
+AF_NS
+AF_IMPLINK
+
+sa_data is a protocol-specific address
+-we will use port number ip address, which is represented by sockaddr_in structure
+
+sockaddr_in is a structure that helps you to reference to the socket's elements
+
+struct sockaddr_in {
+    short int sin_family;
+    unsigned short int sin_port;
+    struct in_addr sin_addr;
+    unsigned char sin_zero[8];
+}
+
+-in addr is used only in the above structure as a structure field and holds the 32 bit netid/hostid
+
+struct in_addr {
+    unsigned long s_addr;
+}
+
+structures used for support of the main functions
+-hostent is a structure used to keep information related to the hostent
+
+struct hostent {
+    char *h_name;
+    char **h_aliases;
+    int h_addrtype;
+    int h_length;
+    char **h_addr_list;
+    #define h_addr h_addr_list[0]
+}
+
+create->bind->listen->accept->connect->send->receive->close
+-similar to file operations
+-the socket() and accept() functions both return handlers (file descriptor)
+    -reads and writes to the sockets requires the use of these handles (file descriptors)
+
+-in linux, sockets and file descriptors share the same file descriptor table
+-sockets have addresses associated with them whereas files do not
+-cannot randomly access a socket like you can with a file
+-sockets must be in the correct state to perform input and output
+
+-the most common/import functions are the following:
+-socket()
+-connect()
+-bind()
+-listen() and accept()
+-read(), recv(), recvfrom(), recvmsg()
+-write(), send(), sendto(), sendmsg()
+-close()
+
+-most of the functions are used by both the client and the server with the exception of bind() which is used by the server and connect() which is used by the client
+-all of the above functions need to include <sys/>types.h> and <sys/>socket.h> except for read/write/close which is defined in <unistd.h>
+
+how does socket() work?
+int socket (int family, int type, int protocol);
+-family specifies the protocol family and is usually the constant AF_INET for IPv4 protocols and AF_INETc for IPv6
+-type specifies the kind of socket you want, and this is usually set to SOCK_STREAM for a stream socket or SOCK_DGRAM for a datagram socket
+-protocol is the third and should be set to the protocol type you are using IPPROTO_TCP, IPROTO_UDP, IPPROTO_SCTP
+-this will return a socket descriptor that can be used. returns -1 on error
+-the setsocket() function helps in manipulating options for the socket referred to by the file descriptor sockfd
+    -completely optional, but it helps to reuse of address and port
+    -prevents error such as: "address already in use"
+
+how does connect() work?
+int connect(int sockfd, struct sockaddr *serv_addr, int addrlen);
+-the connect function is used by TCP client to establish a connection with TCP server
+-sockfd is a socket descriptor returned by the socket function
+-serv_addr is a pointer to struct sockaddr that contains destination IP address and port
+-addrlen is set to sizeof(struct sockaddr)
+-returns 0 if connected to server, else -1 on error
+
+how does bind() work?
+int bind(int sockfd, struct sockaddr* my_addr, int addrlen);
+-when the server starts, it needs to tell the operating system which port is going to be binded
+-once a server program has created a socket and named it with bind(), giving it an IP address and port number, should any program anywhere on the network give that same name to the connect() function, that program will find the server program and link it up
+-sockfd is the socket descriptor returned by socket function
+-my_addr is a pointe rto the struct sockaddr that contains the local IP address and port
+    -a value of 0 for port number indicates the system will choose a random port, and INADDR_ANY for value for IP address means the server's IP address will be assigned automatically
+-addlen is set to sizeof(struct sockaddr);
+
+how does listen() work?
+int listen(int sockfd, int backlog)
+-if your server is popular, you will get many client requests at once
+-the listen() system call tells the OS how long you want the queue to be
+-calling listen() with queue length of 10 means that up to 10 clients can try to connect to the server at once
+    -they will not all be able to immediately answered, but they will be able to wait
+    -the 11th client will be told the server is too busy
+-the listen() is called only on the server
+-sockfd is the fd for the socket
+-backlog is the max number of allowed connections
+-returns 0 on success or -1 on error
+
+how does accept() work?
+int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
+-when you bind a port and set up a listen queue, you have to wait
+-servers spend most of their lives waiting for clients to contact them
+-the accept() system call waits until a client contacts the server, and then it returns a second socket descriptor that can be used to hold a conversation on.
+-sockfd - same as above
+-cliaddr - pointer to a struct sockaddr that contains client ip address and port
+-addrlen - set to sizeof(struct sockaddr)
+-returns a non-negative descriptor on success, otherwise returns -1 (all read/write ops will be done on this descriptor to communicate with the client)
 
