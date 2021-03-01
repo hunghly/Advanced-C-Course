@@ -44,7 +44,7 @@ int main(void) {
     struct sockaddr_in client;
     char client_message[200] = {0};
     char message[100] = {0};
-    const char *pMessage = "hello from server";
+    const char *pMessage = "hello";
 
     // create the socket
     socket_desc = socketCreate();
@@ -93,6 +93,7 @@ int main(void) {
         if (strcmp(pMessage, client_message) == 0) {
             strcpy(message, "Hi there!");
         } else {
+            printf("%s\n", pMessage);
             strcpy(message, "invalid mesage!");
         }
 
