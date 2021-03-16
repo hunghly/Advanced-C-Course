@@ -51,6 +51,17 @@ int main(void) {
    // - process-shared -specifies the process sharing of a mutex
    // pthread_mutex_destroy(mutex) can be used to free the mutex when finished
    // to 
+    if (pthread_mutex_init(&lock, NULL) != 0) {
+        printf("Mutex initialization failed\n");
+        return 1;
+    }
+    if (pthread_mutex_init(&lock, NULL) != 0) {
+        printf("Mutex initialization failed\n");
+        return 1;
+    }
+   pthread_mutex_lock(&lock);
+   printf("soemthing here");
+   pthread_mutex_unlock(&lock);
 
     return 0;
 }

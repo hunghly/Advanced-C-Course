@@ -46,6 +46,7 @@ int main(void) {
     char message[100] = {0};
     char shutdown[100] = "shutdown";
     const char *pMessage = "hello";
+    char response[50];
 
     // create the socket
     socket_desc = socketCreate();
@@ -66,7 +67,7 @@ int main(void) {
     listen(socket_desc, 3); // creates a listener that listens up to 3 connections
 
     // accept any incoming connections. this runs forever, waiting for connections
-    while (1) {
+    // while (1) {
         printf("Waiting for incoming connections...\n");
         clientLen = sizeof(struct sockaddr_in);
         
@@ -84,37 +85,49 @@ int main(void) {
         memset(message, '\0', sizeof(message)); // essentially this zeros out the message
         // printf("client message is %s\n", client_message);
 
-        // try to recv the message
-        if (recv(sock,client_message, 200, 0) < 0) {
-            printf("recv failed");
-            break;
-        }
-        printf("Client reply: %s\n", client_message);
-        printf("pMessage: %s\n", pMessage);
+    while (1) {
+        // // try to recv the message
+        // if (recv(sock,client_message, 200, 0) < 0) {
+        //     printf("recv failed");
+        //     break;
+        // }
+        // printf("Client reply: %s\n", client_message);
+        // printf("pMessage: %s\n", pMessage);
 
-        // if we compare the client message to our secret message, then we can send a message back
-        if (strcmp(pMessage, client_message) == 0) {
-            strcpy(message, "Hi there!");
-        } else {
-            printf("%s\n", pMessage);
-            strcpy(message, "invalid mesage!\n");
-        }
+        // // if we compare the client message to our secret message, then we can send a message back
+        // if (strcmp(pMessage, client_message) == 0) {
+        //     strcpy(message, "Hi there!");
+        // } else {
+        //     printf("%s\n", pMessage);
+        //     strcpy(message, "invalid mesage!\n");
+        // }
 
         // send some data
-        if (send(sock, message, strlen(message), 0) < 0) {
-            printf("send failed\n");
-            return 1;
-        }
+        // printf("Sending message: %s\n", shutdown);
+        // if (send(sock, shutdown, strlen(shutdown), 0) < 0) {
+        //     printf("send failed\n");
+        //     return 1;
+        // }
         sleep(2);
-        if (send(sock, shutdown, strlen(shutdown), 0) < 0) {
-            printf("error shutting down\n");
+        // if (send(sock, shutdown, strlen(shutdown), 0) < 0) {
+        //     printf("error shutting down\n");
+        //     return 1;
+        // }
+        // printf("I also sent a shutdown message");
+
+        memset(response, '\0', 50);
+        printf("Receiving message");
+        if (recv(sock, response, 50, 0) < 0) {
+            printf("receive failed\n");
             return 1;
         }
-        printf("I also sent a shutdown message");
+        else {
+            printf("received response: %s\n", response);
+        }
 
-        close(sock);
         sleep(1);
     }
+    close(sock);
 
 
     return 0;

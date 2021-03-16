@@ -88,6 +88,7 @@ int main(void) {
             break;
         }
         printf("Client reply: %s\n", client_message);
+        printf("Length of client message: %lu\n", strlen(client_message));
 
         // if we compare the client message to our secret message, then we can send a message back
         if (strcmp(pMessage, client_message) == 0) {
