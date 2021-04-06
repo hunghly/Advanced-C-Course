@@ -23,11 +23,11 @@ int main(void)
         // }
 
         /* Processing loop */
-        for(cntr=0; cntr<MAXSTRS; cntr++) {
-                fputs(strings[cntr], pipe_fp);
-                fputc('\n', pipe_fp);
-        }
-
+        // for(cntr=0; cntr<MAXSTRS; cntr++) {
+        //         fputs(strings[cntr], pipe_fp);
+        //         fputc('\n', pipe_fp);
+        // }
+        // system("ls");
         /* Close the pipe */
         pclose(pipe_fp);
         
