@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 
         c = getopt_long(argc, argv, "abc:d:f:",
                         long_options, &option_index);
-        printf("option_index %d\n", option_index);
+        // printf("option_index %d\n", option_index);
         /* Detect the end of the options. */
         if (c == -1)
             break;
