@@ -82,12 +82,12 @@ int main(void) {
     puts(str);
 
     FILE *fp = NULL;
-    if ((fp = fopen("somefile.txt", "w"))) {
+    if ((fp = fopen("somefile.txt", "wr"))) {
         if (fp == NULL) {
             exit(1);
         }
         
-        fputs("Hello there!", fp);
+        // fputs("Hello there!", fp);
     }
     fclose(fp);
     return 0;

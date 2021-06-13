@@ -1,0 +1,29 @@
+Linked List
+1. insert
+2. delete
+3. delete at
+4. size
+5. empty
+6. search
+7. display
+
+Stack
+1. push
+2. pop
+3. peek
+4. size
+5. isempty
+
+Queue
+1. enqueue
+2. dequeue
+3. peek
+4. size
+5. is empty
+
+Binary Tree
+1. insert
+2. delete
+3. search
+4. size
+
